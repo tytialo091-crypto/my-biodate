@@ -2,13 +2,12 @@
 window.addEventListener('load', () => {
   const loading = document.getElementById('loading');
   if (loading) {
-    // Kasih waktu buat load BGM
     setTimeout(() => {
       loading.style.opacity = '0';
       setTimeout(() => {
         loading.style.display = 'none';
       }, 500);
-    }, 1500); // Loading lebih lama biar BGM siap
+    }, 1500);
   }
 });
 
@@ -31,51 +30,48 @@ if (typingElement) {
 // ========== MUSIC PLAYER ==========
 const bgm = document.getElementById('bgm');
 const musicToggle = document.getElementById('musicToggle');
-const musicIcon = musicToggle?.querySelector('.music-icon');
-
-let isMusicPlaying = false;
 
 if (bgm && musicToggle) {
-  // Set volume (70% biar ga terlalu keras)
-  bgm.volume = 0.4;
+  const musicIcon = musicToggle.querySelector('.music-icon');
+  const musicText = musicToggle.querySelector('.music-text');
   
-  // Cek apakah BGM bisa autoplay
-  bgm.play().then(() => {
-    // Berhasil autoplay
-    isMusicPlaying = true;
-    updateMusicIcon(true);
-  }).catch(error => {
-    // Autoplay diblokir browser, tunggu interaksi user
-    console.log('Autoplay diblokir, tunggu interaksi user');
-    isMusicPlaying = false;
-    updateMusicIcon(false);
-    
-    // Kasih tau user buat klik
-    if (musicToggle) {
-      musicToggle.classList.add('pulse-animation');
-    }
-  });
+  // Set volume
+  bgm.volume = 0.3;
+  
+  let isMusicPlaying = false;
   
   // Fungsi update icon
   function updateMusicIcon(playing) {
     if (playing) {
       musicIcon.textContent = '🔊';
-      musicToggle?.classList.remove('paused');
-      musicToggle?.classList.add('playing');
+      musicText.textContent = 'Music On';
+      musicToggle.classList.add('playing');
+      musicToggle.classList.remove('paused');
     } else {
       musicIcon.textContent = '🔈';
-      musicToggle?.classList.add('paused');
-      musicToggle?.classList.remove('playing');
+      musicText.textContent = 'Music Off';
+      musicToggle.classList.remove('playing');
+      musicToggle.classList.add('paused');
     }
   }
   
-  // Play setelah user klik di mana aja (first interaction)
+  // Coba autoplay
+  bgm.play().then(() => {
+    isMusicPlaying = true;
+    updateMusicIcon(true);
+  }).catch(() => {
+    isMusicPlaying = false;
+    updateMusicIcon(false);
+    musicToggle.classList.add('pulse-animation');
+  });
+  
+  // Play setelah user klik pertama
   document.body.addEventListener('click', function playFirstTime() {
     if (!isMusicPlaying && bgm.paused) {
       bgm.play().then(() => {
         isMusicPlaying = true;
         updateMusicIcon(true);
-        musicToggle?.classList.remove('pulse-animation');
+        musicToggle.classList.remove('pulse-animation');
       }).catch(e => console.log('Gagal play:', e));
     }
   }, { once: true });
@@ -88,6 +84,7 @@ if (bgm && musicToggle) {
       bgm.play().then(() => {
         isMusicPlaying = true;
         updateMusicIcon(true);
+        musicToggle.classList.remove('pulse-animation');
       });
     } else {
       bgm.pause();
@@ -96,7 +93,7 @@ if (bgm && musicToggle) {
     }
   });
   
-  // Handle ketika musik selesai (loop otomatis)
+  // Loop otomatis
   bgm.addEventListener('ended', () => {
     bgm.currentTime = 0;
     bgm.play();
@@ -113,7 +110,7 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// Trigger reveal untuk elemen yang sudah terlihat saat load
+// Trigger reveal saat load
 document.addEventListener('DOMContentLoaded', () => {
   window.dispatchEvent(new Event('scroll'));
 });
@@ -151,7 +148,6 @@ if (canvas) {
       p.x += p.dx;
       p.y += p.dy;
       
-      // Wrap around edges
       if (p.x > canvas.width) p.x = 0;
       if (p.x < 0) p.x = canvas.width;
       if (p.y > canvas.height) p.y = 0;
