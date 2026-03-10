@@ -12,25 +12,72 @@
   <h2 class="logo">Bintang.</h2>
   <div>
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+    <a href="about.html" class="active">About</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
 <div class="card reveal">
-  <img src="profile.jpg" class="profile">
-  <h2>Biodata</h2>
-  <p>Nama: Bintang Arya Hafidsyah</p>
-  <p>Tanggal Lahir: 18 November 2009</p>
-  <p>Umur: 16 Tahun</p>
-  <p>Sekolah: SMKS Brigjend Katamso 2</p>
-  <p>Kota: Medan</p>
-  <p>Hobi: Basket, Ngoding, Gaming</p>
-  <p>Cita-cita: Game Dev / Pemain Basket</p>
-  <p>Skill: Basket, Ngoding, Mobile Legends</p>
-  <a class="btn" href="https://instagram.com/Chef_tytialo" target="_blank">Instagram Saya</a>
+  <!-- Foto Profil -->
+  <div class="profile-container">
+    <img src="profile.jpg" class="profile" alt="Bintang Arya">
+    <div class="profile-glow"></div>
+  </div>
+  
+  <h2 class="glow-text">✨ Biodata ✨</h2>
+  
+  <div class="bio-item">
+    <span class="bio-label">Nama:</span>
+    <span>Bintang Arya Hafidsyah</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Tanggal Lahir:</span>
+    <span>18 November 2009</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Umur:</span>
+    <span>16 Tahun</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Sekolah:</span>
+    <span>SMKS Brigjend Katamso 2</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Kota:</span>
+    <span>Medan</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Hobi:</span>
+    <span>🏀 Basket | 💻 Ngoding | 🎮 Gaming</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Cita-cita:</span>
+    <span>Game Developer / Pemain Basket</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Skill:</span>
+    <span>🏀 Basket | 💻 Coding | 🎮 MLBB</span>
+  </div>
+  
+  <div class="social-links">
+    <a class="btn" href="https://instagram.com/Chef_tytialo" target="_blank">
+      <span class="btn-icon">📷</span> Instagram
+    </a>
+  </div>
+</div>
+
+<!-- Audio BGM -->
+<audio id="bgm" loop preload="auto">
+  <source src="bgm.mp3" type="audio/mpeg">
+  Browser kamu tidak support audio player.
+</audio>
+
+<!-- Tombol kontrol musik -->
+<div class="music-control" id="musicToggle">
+  <span class="music-icon">🔊</span>
+  <span class="music-text">Music</span>
 </div>
 
 <script src="script.js"></script>
 </body>
-</html>
+        </html>
