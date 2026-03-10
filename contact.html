@@ -13,15 +13,44 @@
   <div>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="active">Contact</a>
   </div>
 </nav>
 
-<div class="card reveal">
-  <h2>Contact Me</h2>
-  <a class="btn" href="https://wa.me/6283857481208" target="_blank">Chat WhatsApp</a>
+<div class="card reveal contact-card">
+  <h2 class="glow-text">📞 Contact Me 📞</h2>
+  <p class="contact-desc">Jangan ragu untuk menghubungi saya!</p>
+  
+  <div class="contact-links">
+    <a class="btn contact-btn" href="https://wa.me/6283857481208" target="_blank">
+      <span class="btn-icon">📱</span> WhatsApp
+    </a>
+    <a class="btn contact-btn" href="https://instagram.com/Chef_tytialo" target="_blank">
+      <span class="btn-icon">📷</span> Instagram
+    </a>
+    <a class="btn contact-btn" href="mailto:bintangarya@example.com">
+      <span class="btn-icon">📧</span> Email
+    </a>
+  </div>
+  
+  <div class="contact-info">
+    <p>📞 +62 838-5748-1208</p>
+    <p>📍 Medan, Indonesia</p>
+    <p>⏰ Response: 1-2 jam</p>
+  </div>
+</div>
+
+<!-- Audio BGM -->
+<audio id="bgm" loop preload="auto">
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Tombol kontrol musik -->
+<div class="music-control" id="musicToggle">
+  <span class="music-icon">🔊</span>
+  <span class="music-text">Music</span>
 </div>
 
 <script src="script.js"></script>
 </body>
-</html>
+  </html>
