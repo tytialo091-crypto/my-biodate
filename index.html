@@ -8,12 +8,16 @@
 </head>
 <body>
 
-<div id="loading">Loading...</div>
+<div id="loading">
+  <div class="loader"></div>
+  <p>Loading...</p>
+  <p class="loading-sub">Memuat Musik & Konten ⚡</p>
+</div>
 
 <nav class="navbar">
   <h2 class="logo">Bintang.</h2>
   <div>
-    <a href="index.html">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -23,12 +27,26 @@
   <div class="hero-box reveal">
     <h1 class="glitch" data-text="BINTANG ARYA">BINTANG ARYA</h1>
     <p id="typing"></p>
-    <a href="about.html" class="btn">Lihat Biodata</a>
+    <div class="hero-buttons">
+      <a href="about.html" class="btn">✨ Lihat Biodata ✨</a>
+      <a href="contact.html" class="btn btn-outline">📞 Contact</a>
+    </div>
   </div>
   <canvas id="particles"></canvas>
 </section>
 
-<audio id="bgm" src="bgm.mp3" loop></audio>
+<!-- Audio BGM -->
+<audio id="bgm" loop preload="auto">
+  <source src="bgm.mp3" type="audio/mpeg">
+  Browser kamu tidak support audio player.
+</audio>
+
+<!-- Tombol kontrol musik -->
+<div class="music-control" id="musicToggle">
+  <span class="music-icon">🔊</span>
+  <span class="music-text">Music</span>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
