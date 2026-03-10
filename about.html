@@ -3,37 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bintang Arya | Home</title>
+  <title>About | Bintang Arya</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="loading">
-  <div class="loader"></div>
-  <p>Loading...</p>
-  <p class="loading-sub">Memuat Musik & Konten ⚡</p>
-</div>
-
 <nav class="navbar">
   <h2 class="logo">Bintang.</h2>
   <div>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-box reveal">
-    <h1 class="glitch" data-text="BINTANG ARYA">BINTANG ARYA</h1>
-    <p id="typing"></p>
-    <div class="hero-buttons">
-      <a href="about.html" class="btn">✨ Lihat Biodata ✨</a>
-      <a href="contact.html" class="btn btn-outline">📞 Contact</a>
-    </div>
+<div class="card reveal">
+  <!-- Foto Profil -->
+  <div class="profile-container">
+    <img src="profile.jpg" class="profile" alt="Bintang Arya">
+    <div class="profile-glow"></div>
   </div>
-  <canvas id="particles"></canvas>
-</section>
+  
+  <h2 class="glow-text">✨ Biodata ✨</h2>
+  
+  <div class="bio-item">
+    <span class="bio-label">Nama:</span>
+    <span>Bintang Arya Hafidsyah</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Tanggal Lahir:</span>
+    <span>18 November 2009</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Umur:</span>
+    <span>16 Tahun</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Sekolah:</span>
+    <span>SMKS Brigjend Katamso 2</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Kota:</span>
+    <span>Medan</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Hobi:</span>
+    <span>🏀 Basket | 💻 Ngoding | 🎮 Gaming</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Cita-cita:</span>
+    <span>Game Developer / Pemain Basket</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Skill:</span>
+    <span>🏀 Basket | 💻 Coding | 🎮 MLBB</span>
+  </div>
+  
+  <div class="social-links">
+    <a class="btn" href="https://instagram.com/Chef_tytialo" target="_blank">
+      <span class="btn-icon">📷</span> Instagram
+    </a>
+  </div>
+</div>
 
 <!-- Audio BGM -->
 <audio id="bgm" loop preload="auto">
