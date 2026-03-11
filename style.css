@@ -1,571 +1,93 @@
-/* ========== RESET & BASE ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Bintang Arya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0a0a1f;
-  color: #1e90ff;
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-}
+<!-- Stars Background -->
+<div class="stars-container">
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+  <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+</div>
 
-/* ========== STARS BACKGROUND ANIMATION ========== */
-.stars-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
+<div id="loading">
+  <div class="loader"></div>
+  <p>Loading...</p>
+  <p class="loading-sub">Memuat Musik & Konten ⚡</p>
+</div>
 
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00ffff;
-  animation: starMove linear infinite;
-}
+<nav class="navbar">
+  <h2 class="logo">Bintang Raja Iblis</h2>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
 
-@keyframes starMove {
-  from {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh) translateX(20px);
-    opacity: 0;
-  }
-}
-
-.star:nth-child(1) { width: 2px; height: 2px; left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.star:nth-child(2) { width: 3px; height: 3px; left: 20%; animation-duration: 10s; animation-delay: 1s; }
-.star:nth-child(3) { width: 1px; height: 1px; left: 30%; animation-duration: 6s; animation-delay: 2s; }
-.star:nth-child(4) { width: 4px; height: 4px; left: 40%; animation-duration: 12s; animation-delay: 3s; }
-.star:nth-child(5) { width: 2px; height: 2px; left: 50%; animation-duration: 7s; animation-delay: 4s; }
-.star:nth-child(6) { width: 3px; height: 3px; left: 60%; animation-duration: 9s; animation-delay: 5s; }
-.star:nth-child(7) { width: 1px; height: 1px; left: 70%; animation-duration: 5s; animation-delay: 6s; }
-.star:nth-child(8) { width: 4px; height: 4px; left: 80%; animation-duration: 11s; animation-delay: 7s; }
-.star:nth-child(9) { width: 2px; height: 2px; left: 90%; animation-duration: 8s; animation-delay: 8s; }
-.star:nth-child(10) { width: 3px; height: 3px; left: 15%; animation-duration: 10s; animation-delay: 9s; }
-.star:nth-child(11) { width: 1px; height: 1px; left: 25%; animation-duration: 6s; animation-delay: 10s; }
-.star:nth-child(12) { width: 4px; height: 4px; left: 35%; animation-duration: 12s; animation-delay: 11s; }
-.star:nth-child(13) { width: 2px; height: 2px; left: 45%; animation-duration: 7s; animation-delay: 12s; }
-.star:nth-child(14) { width: 3px; height: 3px; left: 55%; animation-duration: 9s; animation-delay: 13s; }
-.star:nth-child(15) { width: 1px; height: 1px; left: 65%; animation-duration: 5s; animation-delay: 14s; }
-.star:nth-child(16) { width: 4px; height: 4px; left: 75%; animation-duration: 11s; animation-delay: 15s; }
-.star:nth-child(17) { width: 2px; height: 2px; left: 85%; animation-duration: 8s; animation-delay: 16s; }
-.star:nth-child(18) { width: 3px; height: 3px; left: 95%; animation-duration: 10s; animation-delay: 17s; }
-.star:nth-child(19) { width: 1px; height: 1px; left: 5%; animation-duration: 6s; animation-delay: 18s; }
-.star:nth-child(20) { width: 4px; height: 4px; left: 12%; animation-duration: 12s; animation-delay: 19s; }
-.star:nth-child(21) { width: 2px; height: 2px; left: 22%; animation-duration: 7s; animation-delay: 20s; }
-.star:nth-child(22) { width: 3px; height: 3px; left: 32%; animation-duration: 9s; animation-delay: 21s; }
-.star:nth-child(23) { width: 1px; height: 1px; left: 42%; animation-duration: 5s; animation-delay: 22s; }
-.star:nth-child(24) { width: 4px; height: 4px; left: 52%; animation-duration: 11s; animation-delay: 23s; }
-.star:nth-child(25) { width: 2px; height: 2px; left: 62%; animation-duration: 8s; animation-delay: 24s; }
-.star:nth-child(26) { width: 3px; height: 3px; left: 72%; animation-duration: 10s; animation-delay: 25s; }
-.star:nth-child(27) { width: 1px; height: 1px; left: 82%; animation-duration: 6s; animation-delay: 26s; }
-.star:nth-child(28) { width: 4px; height: 4px; left: 92%; animation-duration: 12s; animation-delay: 27s; }
-.star:nth-child(29) { width: 2px; height: 2px; left: 8%; animation-duration: 7s; animation-delay: 28s; }
-.star:nth-child(30) { width: 3px; height: 3px; left: 18%; animation-duration: 9s; animation-delay: 29s; }
-
-/* Tambahan stars dengan warna biru */
-.star-blue {
-  background: #1e90ff;
-  box-shadow: 0 0 10px #1e90ff, 0 0 20px #1e90ff, 0 0 30px #00ffff;
-}
-
-/* ========== NAVBAR ========== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background: rgba(10, 10, 30, 0.8);
-  backdrop-filter: blur(15px);
-  z-index: 100;
-  border-bottom: 1px solid rgba(30, 144, 255, 0.2);
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #1e90ff, #00ffff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.navbar a {
-  color: #1e90ff;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.navbar a:hover,
-.navbar a.active {
-  color: #00ffff;
-  background: rgba(30, 144, 255, 0.1);
-}
-
-/* ========== HERO SECTION ========== */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 60px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-box {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 20px;
-}
-
-.hero-box h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  margin-bottom: 15px;
-  line-height: 1.2;
-  color: #1e90ff;
-  text-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
-}
-
-/* ========== TYPING EFFECT ========== */
-#typing {
-  color: #00ffff;
-  margin-top: 5px;
-  font-weight: 400;
-  min-height: 40px;
-  font-size: 1.3rem;
-  border-right: 2px solid #00ffff;
-  display: inline-block;
-  padding-right: 5px;
-  animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { border-color: #00ffff; }
-  50% { border-color: transparent; }
-}
-
-/* ========== BUTTONS ========== */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  background: #1e90ff;
-  color: #0a0a1f;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(30, 144, 255, 0.3);
-}
-
-.btn:hover {
-  background: #00ffff;
-  color: #0a0a1f;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
-}
-
-.btn-outline {
-  background: transparent;
-  border: 2px solid #1e90ff;
-  color: #1e90ff;
-}
-
-.btn-outline:hover {
-  background: #1e90ff;
-  color: #0a0a1f;
-  border-color: #00ffff;
-}
-
-.btn-icon {
-  font-size: 1.2rem;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-/* ========== CARDS ========== */
-.card {
-  background: rgba(12, 12, 26, 0.9);
-  backdrop-filter: blur(10px);
-  max-width: 450px;
-  margin: 120px auto 40px;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(30, 144, 255, 0.2);
-  text-align: center;
-  border: 1px solid rgba(30, 144, 255, 0.1);
-  position: relative;
-  z-index: 2;
-}
-
-.contact-card {
-  max-width: 450px;
-}
-
-/* ========== PROFILE ========== */
-.profile-container {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 20px;
-}
-
-.profile {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 3px solid #1e90ff;
-  object-fit: cover;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.profile:hover {
-  transform: scale(1.05);
-}
-
-.profile-glow {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #1e90ff, #00ffff, #1e90ff);
-  filter: blur(10px);
-  opacity: 0.5;
-  z-index: 1;
-  animation: glowPulse 3s infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.1); }
-}
-
-.glow-text {
-  color: #1e90ff;
-  text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-}
-
-/* ========== BIO ITEMS - DENGAN JUSTIFY ========== */
-.bio-item {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 0;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(30, 144, 255, 0.1);
-  text-align: left;
-}
-
-.bio-item .bio-label {
-  font-weight: 600;
-  color: #00ffff;
-  text-align: left;
-  flex: 0 0 100px;
-}
-
-.bio-item span:last-child {
-  text-align: justify;
-  text-justify: inter-word;
-  flex: 1;
-  padding-left: 10px;
-}
-
-.social-links {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-/* ========== CONTACT PAGE - DENGAN JUSTIFY ========== */
-.contact-desc {
-  margin: 15px 0 20px;
-  color: #aaa;
-  font-style: italic;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 25px 0;
-  text-align: center;
-}
-
-.contact-btn {
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  text-align: center;
-}
-
-.contact-info {
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(30, 144, 255, 0.2);
-}
-
-.contact-info p {
-  margin: 8px 0;
-  color: #1e90ff;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* ========== MUSIC CONTROL ========== */
-.music-control {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: rgba(10, 10, 30, 0.9);
-  backdrop-filter: blur(10px);
-  border: 2px solid #1e90ff;
-  border-radius: 50px;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #1e90ff;
-  cursor: pointer;
-  z-index: 1000;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(30, 144, 255, 0.3);
-}
-
-.music-control:hover {
-  background: #1e90ff;
-  color: #0a0a1f;
-  transform: translateY(-3px);
-  box-shadow: 0 0 30px rgba(30, 144, 255, 0.4);
-}
-
-.music-icon {
-  font-size: 1.3rem;
-}
-
-.music-text {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.music-control.playing {
-  border-color: #00ffff;
-  animation: musicPulse 2s infinite;
-}
-
-@keyframes musicPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); }
-}
-
-.pulse-animation {
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* ========== SCROLL REVEAL ========== */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========== LOADING SCREEN ========== */
-#loading {
-  position: fixed;
-  inset: 0;
-  background: #0a0a1f;
-  color: #1e90ff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: opacity 0.5s ease;
-}
-
-.loader {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(30, 144, 255, 0.3);
-  border-top-color: #1e90ff;
-  border-radius: 50%;
-  animation: spin 1s infinite linear;
-  margin-bottom: 15px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.loading-sub {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 10px;
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 12px 20px;
-  }
+<div class="card reveal">
+  <div class="profile-container">
+    <img src="profile.jpg" class="profile" alt="Bintang Arya" onerror="this.src='https://via.placeholder.com/140/1e90ff/ffffff?text=B'">
+  </div>
   
-  .navbar a {
-    margin-left: 10px;
-    font-size: 0.9rem;
-  }
+  <h2 class="glow-text">✨ Biodata ✨</h2>
   
-  .hero {
-    padding-left: 20px;
-  }
+  <div class="bio-item">
+    <span class="bio-label">Nama:</span>
+    <span>Bintang Arya Hafidsyah</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Tanggal Lahir:</span>
+    <span>18 November 2009</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Umur:</span>
+    <span>16 Tahun</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Sekolah:</span>
+    <span>SMKS Brigjend Katamso 2, Medan</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Kota:</span>
+    <span>Medan, Sumatera Utara</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Hobi:</span>
+    <span>🏀 Basket, 💻 Ngoding, 🎮 Gaming</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Cita-cita:</span>
+    <span>Game Developer / Pemain Basket Profesional</span>
+  </div>
+  <div class="bio-item">
+    <span class="bio-label">Skill:</span>
+    <span>🏀 Basket, 💻 HTML/CSS/JS, 🎮 Mobile Legends</span>
+  </div>
   
-  .hero-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .card {
-    margin: 100px 20px 40px;
-    padding: 20px;
-  }
-  
-  .bio-item {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .bio-item .bio-label {
-    flex: 0 0 90px;
-  }
-  
-  .music-control {
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 18px;
-  }
-  
-  .profile-container {
-    width: 120px;
-    height: 120px;
-  }
-}
+  <div class="social-links">
+    <a class="btn" href="https://instagram.com/Chef_tytialo" target="_blank">
+      <span class="btn-icon">📷</span> Instagram
+    </a>
+  </div>
+</div>
 
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1.4rem;
-  }
-  
-  .navbar a {
-    margin-left: 8px;
-    font-size: 0.8rem;
-    padding: 4px 6px;
-  }
-  
-  #typing {
-    font-size: 1rem;
-  }
-  
-  .music-text {
-    display: none;
-  }
-  
-  .music-control {
-    padding: 12px;
-    border-radius: 50%;
-  }
-  
-  .music-icon {
-    font-size: 1.5rem;
-  }
-  
-  /* Mobile fixes for justify */
-  .bio-item {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .bio-item .bio-label {
-    flex: none;
-    margin-bottom: 5px;
-  }
-  
-  .bio-item span:last-child {
-    padding-left: 0;
-    text-align: left;
-  }
-  
-  .contact-info p {
-    text-align: left;
-  }
-  
-  .contact-desc {
-    text-align: left;
-  }
-}
+<audio id="bgm" loop preload="auto">
+  <source src="bgm.mp3" type="audio/mpeg">
+</audio>
 
-/* ========== UTILITY CLASSES ========== */
-.text-center {
-  text-align: center;
-}
+<div class="music-control" id="musicToggle">
+  <span class="music-icon">🎵</span>
+  <span class="music-text">BG Music</span>
+</div>
 
-.mt-20 {
-  margin-top: 20px;
-}
-
-.mb-20 {
-  margin-bottom: 20px;
-}
-
-.hidden {
-  display: none;
-  }
+<script src="script.js"></script>
+</body>
+</html>
