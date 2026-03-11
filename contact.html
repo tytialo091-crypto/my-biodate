@@ -4,36 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Bintang Arya</title>
-  <style>
-    /* Copy semua style dari about.html */
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Segoe UI',sans-serif;background:#0a0a1f;color:#1e90ff;line-height:1.6;min-height:100vh;overflow-x:hidden;}
-    .navbar{display:flex;justify-content:space-between;align-items:center;padding:15px 40px;position:fixed;width:100%;top:0;background:rgba(10,10,30,0.8);backdrop-filter:blur(15px);z-index:100;border-bottom:1px solid rgba(30,144,255,0.2);}
-    .logo{font-size:1.8rem;font-weight:700;background:linear-gradient(45deg,#1e90ff,#00ffff);-webkit-background-clip:text;background-clip:text;color:transparent;}
-    .navbar a{color:#1e90ff;margin-left:20px;text-decoration:none;font-weight:500;transition:0.3s;padding:5px 10px;border-radius:5px;}
-    .navbar a:hover,.navbar a.active{color:#00ffff;background:rgba(30,144,255,0.1);}
-    .btn{display:inline-block;margin-top:20px;background:#1e90ff;color:#0a0a1f;padding:12px 25px;border-radius:30px;text-decoration:none;font-weight:600;transition:all 0.3s ease;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(30,144,255,0.3);}
-    .btn:hover{background:#00ffff;color:#0a0a1f;transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,255,255,0.4);}
-    .btn-icon{font-size:1.2rem;}
-    .card{background:rgba(12,12,26,0.9);backdrop-filter:blur(10px);max-width:450px;margin:120px auto 40px;padding:30px;border-radius:20px;box-shadow:0 0 30px rgba(30,144,255,0.2);text-align:center;border:1px solid rgba(30,144,255,0.1);}
-    .contact-card{max-width:450px;}
-    .glow-text{color:#1e90ff;text-shadow:0 0 10px rgba(30,144,255,0.5);margin-bottom:20px;font-size:1.8rem;}
-    .contact-desc{margin:15px 0 20px;color:#aaa;font-style:italic;}
-    .contact-links{display:flex;flex-direction:column;gap:12px;margin:25px 0;}
-    .contact-btn{margin-top:0;display:flex;align-items:center;justify-content:center;gap:10px;}
-    .contact-info{margin-top:25px;padding-top:20px;border-top:1px solid rgba(30,144,255,0.2);}
-    .contact-info p{margin:8px 0;color:#1e90ff;}
-    .music-control{position:fixed;bottom:30px;right:30px;background:rgba(10,10,30,0.9);backdrop-filter:blur(10px);border:2px solid #1e90ff;border-radius:50px;padding:12px 24px;display:flex;align-items:center;gap:10px;color:#1e90ff;cursor:pointer;z-index:1000;transition:all 0.3s ease;box-shadow:0 0 20px rgba(30,144,255,0.3);}
-    .music-control:hover{background:#1e90ff;color:#0a0a1f;transform:translateY(-3px);box-shadow:0 0 30px rgba(30,144,255,0.4);}
-    .music-icon{font-size:1.3rem;}
-    .music-text{font-weight:600;font-size:0.9rem;}
-    .music-control.playing{border-color:#00ffff;animation:musicPulse 2s infinite;}
-    @keyframes musicPulse{0%,100%{box-shadow:0 0 20px rgba(0,255,255,0.3);}50%{box-shadow:0 0 30px rgba(0,255,255,0.6);}}
-    .reveal{opacity:0;transform:translateY(30px);transition:all 0.6s ease;}
-    .reveal.active{opacity:1;transform:translateY(0);}
-    @media (max-width:768px){.navbar{padding:12px 20px;}.navbar a{margin-left:10px;font-size:0.9rem;}.card{margin:100px 20px 40px;padding:20px;}.music-control{bottom:20px;right:20px;padding:12px 18px;}}
-    @media (max-width:480px){.logo{font-size:1.4rem;}.navbar a{margin-left:8px;font-size:0.8rem;}.music-text{display:none;}.music-control{padding:12px;border-radius:50%;}.music-icon{font-size:1.5rem;}}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -48,7 +19,7 @@
 
 <div class="card reveal contact-card">
   <h2 class="glow-text">📞 Contact Me 📞</h2>
-  <p class="contact-desc">Jangan ragu untuk menghubungi saya!</p>
+  <p class="contact-desc">LAU SIAPE MPRUY!</p>
   
   <div class="contact-links">
     <a class="btn contact-btn" href="https://wa.me/6283857481208" target="_blank">
@@ -57,7 +28,7 @@
     <a class="btn contact-btn" href="https://instagram.com/Chef_tytialo" target="_blank">
       <span class="btn-icon">📷</span> Instagram
     </a>
-    <a class="btn contact-btn" href="mailto:bintangarya@example.com">
+    <a class="btn contact-btn" href="mailto:tytialo091@gmail.com">
       <span class="btn-icon">📧</span> Email
     </a>
   </div>
@@ -65,6 +36,7 @@
   <div class="contact-info">
     <p>📞 +62 838-5748-1208</p>
     <p>📍 Medan, Indonesia</p>
+    <p>📧 tytialo091@gmail.com</p>
     <p>⏰ Response: 1-2 jam</p>
   </div>
 </div>
@@ -80,4 +52,4 @@
 
 <script src="script.js"></script>
 </body>
-    </html>
+  </html>
