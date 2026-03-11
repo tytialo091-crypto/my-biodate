@@ -1,0 +1,748 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'Orbitron', 'Courier New', monospace;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* ==================== LOADING SCREEN ==================== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-logo {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.logo-f1 {
+    font-size: 120px;
+    font-weight: 900;
+    color: #ff3333;
+    text-shadow: 0 0 30px #ff3333, 0 0 60px #ff0000;
+    letter-spacing: 10px;
+    line-height: 1;
+    font-family: 'Racing Sans One', sans-serif;
+}
+
+.logo-text {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 20px #ff6666;
+    letter-spacing: 8px;
+}
+
+.loading-bar-container {
+    width: 500px;
+    height: 10px;
+    background: #222;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff3333, #ffff00);
+    transition: width 0.3s;
+}
+
+.loading-text {
+    color: #ff6666;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.loading-progress {
+    color: #ffff00;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.loading-tip {
+    color: #ff9999;
+    font-size: 14px;
+    max-width: 500px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #ff3333;
+}
+
+/* ==================== GAME CONTAINER ==================== */
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Header */
+.f1-header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    background: rgba(0,0,0,0.8);
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    padding: 10px 25px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255,51,51,0.3);
+}
+
+.f1-logo .logo-small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-f1-small {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff3333;
+    font-family: 'Racing Sans One', sans-serif;
+    text-shadow: 0 0 15px #ff3333;
+}
+
+.logo-text-small {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.f1-menu {
+    display: flex;
+    gap: 10px;
+}
+
+.menu-btn {
+    background: #222;
+    color: white;
+    border: 1px solid #ff3333;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.menu-btn:hover {
+    background: #ff3333;
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff3333;
+}
+
+/* Game Area */
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Speedometer */
+.speedometer {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 220px;
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 20;
+    box-shadow: 0 0 30px rgba(255,51,51,0.3);
+}
+
+.speed-display {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.speed-display span {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff3333;
+    text-shadow: 0 0 15px #ff3333;
+}
+
+.speed-unit {
+    font-size: 14px !important;
+    color: #ff6666 !important;
+    margin-left: 5px;
+}
+
+.gear-display {
+    font-size: 24px;
+    color: #ffff00;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.rpm-display {
+    width: 100%;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.rpm-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+    transition: width 0.1s;
+}
+
+/* Race Info */
+.race-info {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    z-index: 20;
+    min-width: 200px;
+}
+
+.info-item {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #ff9999;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.info-item span {
+    color: #ff3333;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Steering Wheel */
+.steering-wheel {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    background: #222;
+    border: 4px solid #ff3333;
+    border-radius: 50%;
+    cursor: grab;
+    transition: transform 0.1s;
+    box-shadow: 0 0 40px rgba(255,51,51,0.5);
+    z-index: 30;
+}
+
+.steering-wheel:active {
+    cursor: grabbing;
+}
+
+.wheel-ring {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid #ff6666;
+    border-radius: 50%;
+}
+
+.wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+    height: 35px;
+    background: #ff3333;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ff3333;
+}
+
+.wheel-grip {
+    position: absolute;
+    width: 20px;
+    height: 45px;
+    background: #ff6666;
+    border-radius: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.wheel-grip.left {
+    left: 25px;
+}
+
+.wheel-grip.right {
+    right: 25px;
+}
+
+.wheel-brand {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ff9999;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Pedals */
+.pedals {
+    position: absolute;
+    bottom: 150px;
+    right: 280px;
+    display: flex;
+    gap: 15px;
+    z-index: 20;
+}
+
+.pedal {
+    width: 80px;
+    height: 150px;
+    background: #222;
+    border: 2px solid;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.pedal.accelerator {
+    border-color: #00ff00;
+}
+
+.pedal.brake {
+    border-color: #ff0000;
+}
+
+.pedal.clutch {
+    border-color: #ffff00;
+}
+
+.pedal-label {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2;
+    text-shadow: 0 0 5px black;
+}
+
+.pedal-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: currentColor;
+    opacity: 0.5;
+    transition: height 0.1s;
+}
+
+.pedal.accelerator .pedal-fill {
+    background: #00ff00;
+}
+
+.pedal.brake .pedal-fill {
+    background: #ff0000;
+}
+
+.pedal.clutch .pedal-fill {
+    background: #ffff00;
+}
+
+/* Minimap */
+.minimap {
+    position: absolute;
+    top: 100px;
+    right: 30px;
+    width: 160px;
+    height: 160px;
+    background: rgba(0,0,0,0.85);
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+#mapCanvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Pause Menu */
+.pause-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(15px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.pause-content {
+    background: #0f0f0f;
+    border: 3px solid #ff3333;
+    border-radius: 30px;
+    padding: 50px;
+    text-align: center;
+    min-width: 350px;
+    box-shadow: 0 0 50px rgba(255,51,51,0.5);
+}
+
+.pause-content h2 {
+    color: #ff3333;
+    margin-bottom: 30px;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.pause-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    background: #222;
+    color: white;
+    border: 2px solid #ff3333;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pause-btn:hover {
+    background: #ff3333;
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #ff3333;
+}
+
+/* Settings Menu */
+.settings-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.98);
+    backdrop-filter: blur(15px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.settings-content {
+    background: #0f0f0f;
+    border: 3px solid #ff3333;
+    border-radius: 30px;
+    padding: 40px;
+    max-width: 550px;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 90%;
+}
+
+.settings-content h2 {
+    color: #ff3333;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.settings-group {
+    margin: 20px 0;
+    padding: 20px;
+    background: #1a1a1a;
+    border-radius: 15px;
+}
+
+.settings-group h3 {
+    color: #ff6666;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.setting-item {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.setting-item label {
+    color: #ff9999;
+    min-width: 130px;
+    font-size: 14px;
+}
+
+.setting-item input[type="range"] {
+    flex: 1;
+    min-width: 200px;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    -webkit-appearance: none;
+}
+
+.setting-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ff3333;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff3333;
+}
+
+.setting-item span {
+    color: #ff3333;
+    font-weight: bold;
+    min-width: 60px;
+}
+
+.setting-item select {
+    padding: 8px 15px;
+    background: #333;
+    color: white;
+    border: 1px solid #ff3333;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.settings-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.settings-btn {
+    padding: 12px 25px;
+    background: #222;
+    color: white;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.settings-btn:hover {
+    background: #ff3333;
+    color: black;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.98);
+    z-index: 300;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #0f0f0f;
+    border: 3px solid #ff3333;
+    border-radius: 30px;
+    padding: 50px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+    color: #ff3333;
+    margin-bottom: 25px;
+    font-size: 32px;
+}
+
+.modal-stats {
+    margin: 25px 0;
+    color: #ff9999;
+}
+
+.modal-stats div {
+    margin: 12px 0;
+    font-size: 18px;
+}
+
+.modal-stats span {
+    color: #ff3333;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.modal-btn {
+    background: #ff3333;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px;
+    min-width: 150px;
+    transition: all 0.2s;
+}
+
+.modal-btn:hover {
+    background: #ff6666;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #ff3333;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .steering-wheel {
+        width: 120px;
+        height: 120px;
+        bottom: 120px;
+    }
+    
+    .pedals {
+        right: 220px;
+        bottom: 120px;
+    }
+    
+    .pedal {
+        width: 60px;
+        height: 120px;
+    }
+    
+    .speedometer {
+        width: 180px;
+    }
+    
+    .speed-display span {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pedals {
+        display: none;
+    }
+    
+    .steering-wheel {
+        bottom: 80px;
+    }
+    
+    .f1-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+    
+    .menu-btn {
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+    
+    .race-info {
+        top: 80px;
+        left: 15px;
+        padding: 10px;
+        min-width: 150px;
+    }
+    
+    .info-item {
+        font-size: 12px;
+    }
+    
+    .info-item span {
+        font-size: 14px;
+    }
+    
+    .minimap {
+        width: 100px;
+        height: 100px;
+        top: 80px;
+        right: 15px;
+    }
+}
