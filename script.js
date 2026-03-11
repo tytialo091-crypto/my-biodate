@@ -105,55 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.dispatchEvent(new Event('scroll'));
 });
 
-// Particles
-const canvas = document.getElementById("particles");
-if (canvas) {
-  const ctx = canvas.getContext("2d");
-  
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  
-  resizeCanvas();
-  
-  const particles = Array.from({length: 50}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2.5 + 1,
-    dx: (Math.random() - 0.5) * 0.15,
-    dy: (Math.random() - 0.5) * 0.15,
-    opacity: Math.random() * 0.4 + 0.2
-  }));
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(30, 144, 255, ${p.opacity})`;
-      ctx.fill();
-      
-      p.x += p.dx;
-      p.y += p.dy;
-      
-      if (p.x > canvas.width) p.x = 0;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.y > canvas.height) p.y = 0;
-      if (p.y < 0) p.y = canvas.height;
-    });
-    
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-  });
-}
-
 // Active Menu
 const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar a').forEach(link => {
