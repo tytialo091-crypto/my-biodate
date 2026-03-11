@@ -1,4 +1,4 @@
-l// Loading screen
+// Loading screen
 window.addEventListener('load', () => {
   const loading = document.getElementById('loading');
   if (loading) {
@@ -35,27 +35,21 @@ if (bgm && musicToggle) {
   const musicIcon = musicToggle.querySelector('.music-icon');
   const musicText = musicToggle.querySelector('.music-text');
   
-  // Set volume
   bgm.volume = 0.3;
-  
   let isMusicPlaying = false;
   
-  // Fungsi update icon
   function updateMusicIcon(playing) {
     if (playing) {
       musicIcon.textContent = '🔊';
       musicText.textContent = 'Music On';
       musicToggle.classList.add('playing');
-      musicToggle.classList.remove('paused');
     } else {
       musicIcon.textContent = '🔈';
       musicText.textContent = 'Music Off';
       musicToggle.classList.remove('playing');
-      musicToggle.classList.add('paused');
     }
   }
   
-  // Coba autoplay
   bgm.play().then(() => {
     isMusicPlaying = true;
     updateMusicIcon(true);
@@ -65,7 +59,6 @@ if (bgm && musicToggle) {
     musicToggle.classList.add('pulse-animation');
   });
   
-  // Play setelah user klik pertama
   document.body.addEventListener('click', function playFirstTime() {
     if (!isMusicPlaying && bgm.paused) {
       bgm.play().then(() => {
@@ -76,7 +69,6 @@ if (bgm && musicToggle) {
     }
   }, { once: true });
   
-  // Toggle music dengan tombol
   musicToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     
@@ -93,7 +85,6 @@ if (bgm && musicToggle) {
     }
   });
   
-  // Loop otomatis
   bgm.addEventListener('ended', () => {
     bgm.currentTime = 0;
     bgm.play();
@@ -110,7 +101,6 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// Trigger reveal saat load
 document.addEventListener('DOMContentLoaded', () => {
   window.dispatchEvent(new Event('scroll'));
 });
