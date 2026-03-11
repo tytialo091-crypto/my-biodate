@@ -27,7 +27,7 @@ if (typingElement) {
   typing();
 }
 
-// ========== MUSIC PLAYER ==========
+// Music Player
 const bgm = document.getElementById('bgm');
 const musicToggle = document.getElementById('musicToggle');
 
@@ -91,7 +91,7 @@ if (bgm && musicToggle) {
   });
 }
 
-// ========== SCROLL REVEAL ==========
+// Scroll Reveal
 window.addEventListener("scroll", () => {
   document.querySelectorAll(".reveal").forEach(el => {
     const top = el.getBoundingClientRect().top;
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.dispatchEvent(new Event('scroll'));
 });
 
-// ========== PARTICLE BACKGROUND ==========
+// Particles
 const canvas = document.getElementById("particles");
 if (canvas) {
   const ctx = canvas.getContext("2d");
@@ -154,7 +154,7 @@ if (canvas) {
   });
 }
 
-// ========== ACTIVE MENU ==========
+// Active Menu
 const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar a').forEach(link => {
   if (link.getAttribute('href') === currentLocation) {
