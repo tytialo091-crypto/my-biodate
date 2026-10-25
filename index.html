@@ -24,25 +24,29 @@
   <p class="loading-sub">Memuat Musik & Konten ⚡</p>
 </div>
 
-<nav class="navbar">
-  <h2 class="logo">Bintang Raja Iblis</h2>
-  <div>
-    <a href="index.html" class="active">Home</a>
+<nav class="navbar" aria-label="Navigasi utama">
+  <a class="logo" href="index.html">Bintang Arya</a>
+  <div class="nav-links">
+    <a href="index.html" class="active" aria-current="page">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-box reveal">
-    <h1>BINTANG ARYA</h1>
-    <p id="typing"></p>
-    <div class="hero-buttons">
-      <a href="about.html" class="btn">✨ Lihat Biodata ✨</a>
-      <a href="contact.html" class="btn btn-outline">📞 Contact</a>
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-box reveal">
+      <p class="eyebrow">PERSONAL SPACE / 2026</p>
+      <h1 id="hero-title">BINTANG<br><span>ARYA</span></h1>
+      <p id="typing" aria-label="Perkenalan singkat"></p>
+      <p class="hero-intro">Membangun ide, mempelajari teknologi, dan menciptakan pengalaman digital yang punya karakter.</p>
+      <div class="hero-buttons">
+        <a href="about.html" class="btn">Lihat biodata</a>
+        <a href="contact.html" class="btn btn-outline">Hubungi saya</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <audio id="bgm" loop preload="auto">
   <source src="bgm.mp3" type="audio/mpeg">
