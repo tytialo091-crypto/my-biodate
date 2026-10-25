@@ -46,9 +46,29 @@
       </div>
     </div>
   </section>
+
+  <section class="game-section reveal" aria-labelledby="game-title">
+    <div class="game-card">
+      <div class="section-heading">
+        <p class="eyebrow">MINI GAME / 01</p>
+        <h2 id="game-title">Tangkap bintangnya.</h2>
+        <p>Klik bintang yang muncul sebelum waktunya habis. Pecahkan skor terbaikmu.</p>
+      </div>
+      <div class="game-stats" aria-live="polite">
+        <span>Skor <strong id="score">0</strong></span>
+        <span>Waktu <strong id="time">20</strong>s</span>
+        <span>Best <strong id="best-score">0</strong></span>
+      </div>
+      <div class="game-board" id="game-board" aria-label="Papan permainan">
+        <span class="game-message" id="game-message">Siap bermain?</span>
+        <button class="target-star" id="target-star" type="button" aria-label="Bintang target">✦</button>
+      </div>
+      <button class="btn game-start" id="game-start" type="button">Mulai game</button>
+    </div>
+  </section>
 </main>
 
-<audio id="bgm" loop preload="auto">
+<audio id="bgm" loop preload="auto" aria-label="Musik latar">
   <source src="bgm.mp3" type="audio/mpeg">
   Browser kamu tidak support audio player.
 </audio>

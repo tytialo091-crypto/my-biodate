@@ -116,6 +116,46 @@ if (heroBox && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }, { passive: true });
 }
 
+// Mini game: catch the moving star.
+const gameBoard = document.getElementById('game-board');
+const targetStar = document.getElementById('target-star');
+const gameStart = document.getElementById('game-start');
+const gameMessage = document.getElementById('game-message');
+const scoreElement = document.getElementById('score');
+const timeElement = document.getElementById('time');
+const bestElement = document.getElementById('best-score');
+let score = 0;
+let timeLeft = 20;
+let gameTimer;
+let bestScore = Number(sessionStorage.getItem('best-star-score') || 0);
+if (bestElement) bestElement.textContent = bestScore;
+
+function moveTarget() {
+  const padding = 18;
+  const maxX = gameBoard.clientWidth - targetStar.offsetWidth - padding;
+  const maxY = gameBoard.clientHeight - targetStar.offsetHeight - padding;
+  targetStar.style.left = `${padding + Math.random() * Math.max(0, maxX)}px`;
+  targetStar.style.top = `${padding + Math.random() * Math.max(0, maxY)}px`;
+}
+function endGame() {
+  clearInterval(gameTimer);
+  targetStar.style.display = 'none';
+  gameMessage.textContent = `Waktu habis — skor kamu ${score}`;
+  gameMessage.style.display = 'grid';
+  gameStart.textContent = 'Main lagi';
+  if (score > bestScore) { bestScore = score; sessionStorage.setItem('best-star-score', bestScore); bestElement.textContent = bestScore; }
+}
+if (gameBoard && targetStar && gameStart) {
+  gameStart.addEventListener('click', () => {
+    clearInterval(gameTimer); score = 0; timeLeft = 20;
+    scoreElement.textContent = score; timeElement.textContent = timeLeft;
+    gameMessage.style.display = 'none'; targetStar.style.display = 'block'; moveTarget();
+    gameStart.textContent = 'Sedang bermain';
+    gameTimer = setInterval(() => { timeLeft -= 1; timeElement.textContent = timeLeft; if (timeLeft <= 0) endGame(); }, 1000);
+  });
+  targetStar.addEventListener('click', () => { score += 1; scoreElement.textContent = score; moveTarget(); });
+}
+
 // Active Menu
 const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar a').forEach(link => {

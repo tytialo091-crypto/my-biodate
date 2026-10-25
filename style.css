@@ -67,6 +67,19 @@ body::after { width: 420px; height: 420px; bottom: -180px; left: -130px; backgro
 .contact-btn { width: min(100%, 340px); }
 .contact-desc { margin: -12px auto 28px; color: var(--muted); text-align: center; }
 .contact-info { display: grid; gap: 9px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; }
+.game-section { padding: 30px 20px 110px; }
+.game-card { width: min(100%, 860px); margin: auto; padding: clamp(24px, 5vw, 44px); border: 1px solid var(--line); border-radius: 28px; background: rgba(13, 29, 48, .72); box-shadow: var(--shadow); backdrop-filter: blur(18px); }
+.section-heading { text-align: center; }
+.section-heading h2 { margin: 4px 0 8px; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: -.06em; }
+.section-heading p:last-child { max-width: 500px; margin: auto; color: var(--muted); }
+.game-stats { display: flex; justify-content: center; gap: clamp(14px, 5vw, 44px); margin: 28px 0 16px; color: var(--muted); font-size: .85rem; }
+.game-stats strong { display: block; color: var(--accent); font-size: 1.35rem; text-align: center; }
+.game-board { position: relative; min-height: 260px; overflow: hidden; border: 1px solid rgba(125,227,212,.2); border-radius: 20px; background: radial-gradient(circle at 50% 30%, rgba(125,227,212,.1), transparent 55%), #081725; }
+.game-message { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: .9rem; pointer-events: none; }
+.target-star { position: absolute; display: none; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255,184,107,.16); color: var(--accent-strong); font-size: 2rem; line-height: 1; cursor: crosshair; box-shadow: 0 0 24px rgba(255,184,107,.45); animation: star-pop .25s ease-out; }
+.target-star:hover { transform: scale(1.18); }
+@keyframes star-pop { from { opacity: 0; transform: scale(.3) rotate(-25deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+.game-start { display: flex; margin: 20px auto 0; }
 .music-control { position: fixed; right: 22px; bottom: 22px; z-index: 20; display: flex; align-items: center; gap: 9px; padding: 11px 16px; border: 1px solid var(--line); border-radius: 999px; background: rgba(13, 29, 48, .88); color: var(--text); cursor: pointer; backdrop-filter: blur(12px); transition: .25s ease; }
 .music-control:hover, .music-control.playing { border-color: var(--accent); color: var(--accent); }
 .music-text { font-size: .8rem; font-weight: 700; }
