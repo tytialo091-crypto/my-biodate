@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bintang Arya | Home</title>
+  <meta name="description" content="Personal space Bintang Arya — web learner, student, dan calon game developer.">
+  <title>Bintang Arya | Personal Space</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,27 +24,51 @@
   <p class="loading-sub">Memuat Musik & Konten ⚡</p>
 </div>
 
-<nav class="navbar">
-  <h2 class="logo">Bintang Raja Iblis</h2>
-  <div>
-    <a href="index.html" class="active">Home</a>
+<nav class="navbar" aria-label="Navigasi utama">
+  <a class="logo" href="index.html">Bintang Arya</a>
+  <div class="nav-links">
+    <a href="index.html" class="active" aria-current="page">Home</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-box reveal">
-    <h1>BINTANG ARYA</h1>
-    <p id="typing"></p>
-    <div class="hero-buttons">
-      <a href="about.html" class="btn">✨ Lihat Biodata ✨</a>
-      <a href="contact.html" class="btn btn-outline">📞 Contact</a>
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-box reveal">
+      <p class="eyebrow">PERSONAL SPACE / 2026</p>
+      <h1 id="hero-title">BINTANG<br><span>ARYA</span></h1>
+      <p id="typing" aria-label="Perkenalan singkat"></p>
+      <p class="hero-intro">Membangun ide, mempelajari teknologi, dan menciptakan pengalaman digital yang punya karakter.</p>
+      <div class="hero-buttons">
+        <a href="about.html" class="btn">Lihat biodata</a>
+        <a href="contact.html" class="btn btn-outline">Hubungi saya</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<audio id="bgm" loop preload="auto">
+  <section class="game-section reveal" aria-labelledby="game-title">
+    <div class="game-card">
+      <div class="section-heading">
+        <p class="eyebrow">MINI GAME / 01</p>
+        <h2 id="game-title">Tangkap bintangnya.</h2>
+        <p>Klik bintang yang muncul sebelum waktunya habis. Pecahkan skor terbaikmu.</p>
+      </div>
+      <div class="game-stats" aria-live="polite">
+        <span>Skor <strong id="score">0</strong></span>
+        <span>Waktu <strong id="time">20</strong>s</span>
+        <span>Best <strong id="best-score">0</strong></span>
+      </div>
+      <div class="game-board" id="game-board" aria-label="Papan permainan">
+        <span class="game-message" id="game-message">Siap bermain?</span>
+        <button class="target-star" id="target-star" type="button" aria-label="Bintang target">✦</button>
+      </div>
+      <button class="btn game-start" id="game-start" type="button">Mulai game</button>
+    </div>
+  </section>
+</main>
+
+<audio id="bgm" loop preload="auto" aria-label="Musik latar">
   <source src="bgm.mp3" type="audio/mpeg">
   Browser kamu tidak support audio player.
 </audio>
