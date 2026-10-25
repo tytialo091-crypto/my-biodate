@@ -105,6 +105,17 @@ document.addEventListener('DOMContentLoaded', () => {
   window.dispatchEvent(new Event('scroll'));
 });
 
+// Gentle pointer interaction for the hero card.
+const heroBox = document.querySelector('.hero-box');
+if (heroBox && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  window.addEventListener('pointermove', (event) => {
+    const x = (event.clientX / window.innerWidth - 0.5) * 2;
+    const y = (event.clientY / window.innerHeight - 0.5) * 2;
+    heroBox.style.setProperty('--pointer-x', `${x * 8}px`);
+    heroBox.style.setProperty('--pointer-y', `${y * 8}px`);
+  }, { passive: true });
+}
+
 // Active Menu
 const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.navbar a').forEach(link => {
