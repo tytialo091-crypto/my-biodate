@@ -4,12 +4,26 @@ const introEnter = document.getElementById('intro-enter');
 const loadingScreen = document.getElementById('loading');
 
 if (introScreen && introEnter) {
+  const introContent = introScreen.querySelector('.intro-content');
+  const matrixDuration = 3000;
+  const greetingDuration = 1000;
+  let introFinished = false;
+  let matrixTimer;
+  let greetingTimer;
+
   document.body.classList.add('intro-active');
-  introEnter.addEventListener('click', () => {
+  document.querySelectorAll('.navbar, main, #musicToggle').forEach((element) => { element.inert = true; });
+
+  const finishIntro = () => {
+    if (introFinished) return;
+    introFinished = true;
+    window.clearTimeout(matrixTimer);
+    window.clearTimeout(greetingTimer);
     introScreen.classList.add('is-leaving');
     window.setTimeout(() => {
       introScreen.remove();
       document.body.classList.remove('intro-active');
+      document.querySelectorAll('.navbar, main, #musicToggle').forEach((element) => { element.inert = false; });
       if (loadingScreen) {
         loadingScreen.classList.add('is-visible');
         window.setTimeout(() => loadingScreen.classList.remove('is-visible'), 650);
@@ -17,7 +31,16 @@ if (introScreen && introEnter) {
       document.querySelectorAll('.reveal').forEach((element) => element.classList.add('active'));
       document.getElementById('hero-title')?.focus?.();
     }, 700);
-  }, { once: true });
+  };
+
+  matrixTimer = window.setTimeout(() => {
+    introScreen.classList.add('intro-ready');
+    introContent?.removeAttribute('aria-hidden');
+    introEnter.focus();
+    greetingTimer = window.setTimeout(finishIntro, greetingDuration);
+  }, matrixDuration);
+
+  introEnter.addEventListener('click', finishIntro, { once: true });
 }
 
 // Typing effect
