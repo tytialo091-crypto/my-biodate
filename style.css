@@ -89,4 +89,32 @@ body::after { width: 420px; height: 420px; bottom: -180px; left: -130px; backgro
 .loader { width: 38px; height: 38px; margin-bottom: 16px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 560px) { .navbar { align-items: flex-start; padding: 15px 16px; } .navbar > div { gap: 0; } .navbar a { padding: 7px 8px; font-size: .78rem; } .hero { padding-top: 125px; } .hero-box h1 { font-size: clamp(3.25rem, 17vw, 5.3rem); } .hero-buttons { flex-direction: column; align-items: stretch; } .card { margin-top: 110px; padding: 28px 20px; } .bio-item { grid-template-columns: 1fr; gap: 5px; } .bio-item span:last-child { text-align: left; } .music-control { right: 16px; bottom: 16px; padding: 12px; } .music-text { display: none; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* Welcome sequence */
+.intro-screen { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; overflow: hidden; padding: 28px 20px; background: radial-gradient(ellipse at 50% 38%, #102b43 0%, #07111f 62%); transition: opacity .7s ease, visibility .7s ease; }
+.intro-screen.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-grid { position: absolute; inset: 0; opacity: .18; background-image: linear-gradient(rgba(125,227,212,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(125,227,212,.12) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(transparent, black 35%, black 75%, transparent); transform: perspective(420px) rotateX(56deg) scale(1.7) translateY(28%); transform-origin: center bottom; }
+.intro-content { position: relative; z-index: 1; width: min(100%, 600px); text-align: center; animation: intro-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+.intro-kicker { color: var(--accent); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .2em; }
+.intro-orb { position: relative; width: 132px; height: 132px; margin: 25px auto 20px; display: grid; place-items: center; perspective: 500px; }
+.orb-core { width: 50px; height: 50px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d6fff5, #7de3d4 35%, #287f9a 72%, #102b43); box-shadow: 0 0 28px rgba(125,227,212,.75), 0 0 80px rgba(58,178,190,.35); animation: core-pulse 2.8s ease-in-out infinite; }
+.orb-ring { position: absolute; inset: 12px; border: 1px solid rgba(125,227,212,.65); border-radius: 50%; transform: rotateX(68deg) rotateZ(-25deg); box-shadow: 0 0 18px rgba(125,227,212,.15); animation: ring-spin 9s linear infinite; }
+.orb-ring-two { inset: 22px 4px; border-color: rgba(255,184,107,.55); transform: rotateY(68deg) rotateZ(35deg); animation-direction: reverse; animation-duration: 12s; }
+.orb-axis { position: absolute; width: 1px; height: 124px; background: linear-gradient(transparent, rgba(125,227,212,.7), transparent); transform: rotate(42deg); }
+.intro-terminal { color: #d4e7e8; font: .82rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.intro-terminal span { color: var(--accent); }
+.intro-content h1 { margin: 9px 0 10px; font-size: clamp(2.2rem, 8vw, 3.6rem); line-height: 1.08; letter-spacing: -.06em; }
+.intro-content h1 span { color: var(--accent); }
+.intro-copy { max-width: 400px; margin: 0 auto; color: var(--muted); font-size: .95rem; }
+.intro-enter { margin-top: 25px; }
+.intro-hint { margin-top: 11px; color: rgba(168,189,202,.7); font-size: .75rem; }
+body.intro-active { overflow: hidden; }
+@keyframes intro-rise { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes core-pulse { 50% { transform: scale(1.12); filter: brightness(1.15); } }
+@keyframes ring-spin { to { rotate: 360deg; } }
+#loading { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .4s ease, visibility .4s ease; }
+#loading.is-visible { opacity: 1; visibility: visible; pointer-events: auto; }
+.music-control { appearance: none; font: inherit; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 560px) { .intro-orb { width: 112px; height: 112px; margin: 20px auto 17px; } .intro-copy { font-size: .88rem; } }
+@media (prefers-reduced-motion: reduce) { .intro-content, .orb-core, .orb-ring { animation: none; } }

@@ -1,109 +1,91 @@
-// Loading screen
-window.addEventListener('load', () => {
-  const loading = document.getElementById('loading');
-  if (loading) {
-    setTimeout(() => {
-      loading.style.opacity = '0';
-      setTimeout(() => {
-        loading.style.display = 'none';
-      }, 500);
-    }, 1500);
-  }
-});
+// Welcome intro and short page handoff.
+const introScreen = document.getElementById('intro-screen');
+const introEnter = document.getElementById('intro-enter');
+const loadingScreen = document.getElementById('loading');
 
-// Typing effect
-const text = "Web Learner | Future Game Developer | Student from Medan";
-let i = 0;
-const typingElement = document.getElementById("typing");
-
-if (typingElement) {
-  function typing() {
-    if (i < text.length) {
-      typingElement.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typing, 70);
-    }
-  }
-  typing();
+if (introScreen && introEnter) {
+  document.body.classList.add('intro-active');
+  introEnter.addEventListener('click', () => {
+    introScreen.classList.add('is-leaving');
+    window.setTimeout(() => {
+      introScreen.remove();
+      document.body.classList.remove('intro-active');
+      if (loadingScreen) {
+        loadingScreen.classList.add('is-visible');
+        window.setTimeout(() => loadingScreen.classList.remove('is-visible'), 650);
+      }
+      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('active'));
+      document.getElementById('hero-title')?.focus?.();
+    }, 700);
+  }, { once: true });
 }
 
-// Music Player
+// Typing effect
+const introText = 'Web Learner | Future Game Developer | Student from Medan';
+const typingElement = document.getElementById('typing');
+if (typingElement) {
+  let characterIndex = 0;
+  const typeNextCharacter = () => {
+    if (characterIndex >= introText.length) return;
+    typingElement.textContent += introText.charAt(characterIndex++);
+    window.setTimeout(typeNextCharacter, 65);
+  };
+  typeNextCharacter();
+}
+
+// Audio starts only after an explicit user action, as required by browsers.
 const bgm = document.getElementById('bgm');
 const musicToggle = document.getElementById('musicToggle');
-
 if (bgm && musicToggle) {
   const musicIcon = musicToggle.querySelector('.music-icon');
   const musicText = musicToggle.querySelector('.music-text');
-  
-  bgm.volume = 0.3;
-  let isMusicPlaying = false;
-  
-  function updateMusicIcon(playing) {
-    if (playing) {
-      musicIcon.textContent = '🔊';
-      musicText.textContent = 'Music On';
-      musicToggle.classList.add('playing');
-    } else {
-      musicIcon.textContent = '🔈';
-      musicText.textContent = 'Music Off';
-      musicToggle.classList.remove('playing');
-    }
-  }
-  
-  bgm.play().then(() => {
-    isMusicPlaying = true;
-    updateMusicIcon(true);
-  }).catch(() => {
-    isMusicPlaying = false;
-    updateMusicIcon(false);
-    musicToggle.classList.add('pulse-animation');
-  });
-  
-  document.body.addEventListener('click', function playFirstTime() {
-    if (!isMusicPlaying && bgm.paused) {
-      bgm.play().then(() => {
-        isMusicPlaying = true;
-        updateMusicIcon(true);
-        musicToggle.classList.remove('pulse-animation');
-      }).catch(e => console.log('Gagal play:', e));
-    }
-  }, { once: true });
-  
-  musicToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    
+  bgm.volume = 0.28;
+
+  const updateMusicState = (playing) => {
+    musicToggle.classList.toggle('playing', playing);
+    musicToggle.setAttribute('aria-pressed', String(playing));
+    musicToggle.setAttribute('aria-label', playing ? 'Matikan musik' : 'Nyalakan musik');
+    if (musicIcon) musicIcon.textContent = playing ? '♫' : '♪';
+    if (musicText) musicText.textContent = playing ? 'Musik menyala' : 'Musik mati';
+  };
+
+  musicToggle.addEventListener('click', async () => {
     if (bgm.paused) {
-      bgm.play().then(() => {
-        isMusicPlaying = true;
-        updateMusicIcon(true);
-        musicToggle.classList.remove('pulse-animation');
-      });
+      try {
+        await bgm.play();
+      } catch {
+        updateMusicState(false);
+        if (musicText) musicText.textContent = 'Audio tidak tersedia';
+      }
     } else {
       bgm.pause();
-      isMusicPlaying = false;
-      updateMusicIcon(false);
     }
   });
-  
-  bgm.addEventListener('ended', () => {
-    bgm.currentTime = 0;
-    bgm.play();
+  bgm.addEventListener('play', () => updateMusicState(true));
+  bgm.addEventListener('pause', () => updateMusicState(false));
+  bgm.addEventListener('error', () => {
+    updateMusicState(false);
+    if (musicText) musicText.textContent = 'Audio tidak tersedia';
+    musicToggle.disabled = true;
   });
+  updateMusicState(false);
 }
 
-// Scroll Reveal
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".reveal").forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 80) {
-      el.classList.add("active");
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  window.dispatchEvent(new Event('scroll'));
-});
+// Reveal content when it enters the viewport.
+const revealElements = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealElements.forEach((element) => revealObserver.observe(element));
+} else {
+  revealElements.forEach((element) => element.classList.add('active'));
+}
 
 // Gentle pointer interaction for the hero card.
 const heroBox = document.querySelector('.hero-box');
@@ -127,8 +109,9 @@ const bestElement = document.getElementById('best-score');
 let score = 0;
 let timeLeft = 20;
 let gameTimer;
-let bestScore = Number(sessionStorage.getItem('best-star-score') || 0);
-if (bestElement) bestElement.textContent = bestScore;
+let bestScore = 0;
+try { bestScore = Number(sessionStorage.getItem('best-star-score') || 0); } catch { bestScore = 0; }
+if (bestElement) bestElement.textContent = String(bestScore);
 
 function moveTarget() {
   const padding = 18;
@@ -138,28 +121,48 @@ function moveTarget() {
   targetStar.style.top = `${padding + Math.random() * Math.max(0, maxY)}px`;
 }
 function endGame() {
-  clearInterval(gameTimer);
+  window.clearInterval(gameTimer);
   targetStar.style.display = 'none';
   gameMessage.textContent = `Waktu habis — skor kamu ${score}`;
   gameMessage.style.display = 'grid';
   gameStart.textContent = 'Main lagi';
-  if (score > bestScore) { bestScore = score; sessionStorage.setItem('best-star-score', bestScore); bestElement.textContent = bestScore; }
+  if (score > bestScore) {
+    bestScore = score;
+    try { sessionStorage.setItem('best-star-score', String(bestScore)); } catch { /* Storage can be unavailable in private browsing. */ }
+    bestElement.textContent = String(bestScore);
+  }
 }
-if (gameBoard && targetStar && gameStart) {
+if (gameBoard && targetStar && gameStart && gameMessage && scoreElement && timeElement) {
   gameStart.addEventListener('click', () => {
-    clearInterval(gameTimer); score = 0; timeLeft = 20;
-    scoreElement.textContent = score; timeElement.textContent = timeLeft;
-    gameMessage.style.display = 'none'; targetStar.style.display = 'block'; moveTarget();
+    window.clearInterval(gameTimer);
+    score = 0;
+    timeLeft = 20;
+    scoreElement.textContent = String(score);
+    timeElement.textContent = String(timeLeft);
+    gameMessage.style.display = 'none';
+    targetStar.style.display = 'block';
+    moveTarget();
     gameStart.textContent = 'Sedang bermain';
-    gameTimer = setInterval(() => { timeLeft -= 1; timeElement.textContent = timeLeft; if (timeLeft <= 0) endGame(); }, 1000);
+    gameStart.disabled = true;
+    gameTimer = window.setInterval(() => {
+      timeLeft -= 1;
+      timeElement.textContent = String(timeLeft);
+      if (timeLeft <= 0) {
+        gameStart.disabled = false;
+        endGame();
+      }
+    }, 1000);
+    gameStart.disabled = false;
   });
-  targetStar.addEventListener('click', () => { score += 1; scoreElement.textContent = score; moveTarget(); });
+  targetStar.addEventListener('click', () => {
+    score += 1;
+    scoreElement.textContent = String(score);
+    moveTarget();
+  });
 }
 
-// Active Menu
+// Active menu
 const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.navbar a').forEach(link => {
-  if (link.getAttribute('href') === currentLocation) {
-    link.classList.add('active');
-  }
+document.querySelectorAll('.navbar a').forEach((link) => {
+  if (link.getAttribute('href') === currentLocation) link.classList.add('active');
 });
