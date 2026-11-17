@@ -9,6 +9,32 @@
 </head>
 <body>
 
+<div class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+  <div class="intro-grid" aria-hidden="true"></div>
+  <div class="matrix-rain" aria-hidden="true">
+    <span>01<br>10<br>11<br>00<br>01<br>10<br>01<br>11<br>00<br>10<br>01<br>11</span>
+    <span>10<br>01<br>00<br>11<br>10<br>10<br>01<br>00<br>11<br>01<br>10<br>00</span>
+    <span>11<br>00<br>01<br>10<br>01<br>11<br>00<br>10<br>11<br>00<br>01<br>10</span>
+    <span>00<br>11<br>10<br>01<br>11<br>00<br>10<br>01<br>00<br>11<br>10<br>01</span>
+    <span>01<br>11<br>00<br>10<br>11<br>01<br>10<br>00<br>01<br>10<br>11<br>00</span>
+    <span>10<br>00<br>11<br>01<br>00<br>10<br>11<br>01<br>10<br>00<br>01<br>11</span>
+    <span>11<br>10<br>01<br>00<br>10<br>01<br>11<br>00<br>11<br>01<br>00<br>10</span>
+    <span>01<br>00<br>10<br>11<br>01<br>10<br>00<br>11<br>10<br>01<br>11<br>00</span>
+    <span>00<br>11<br>01<br>10<br>00<br>11<br>10<br>01<br>11<br>00<br>10<br>01</span>
+    <span>10<br>01<br>11<br>00<br>10<br>00<br>01<br>11<br>01<br>10<br>00<br>11</span>
+    <span>11<br>00<br>10<br>01<br>11<br>10<br>01<br>00<br>10<br>11<br>01<br>00</span>
+  </div>
+  <div class="intro-content" aria-hidden="true">
+    <p class="intro-kicker">KONEKSI AMAN / 001</p>
+    <div class="intro-orb" aria-hidden="true"><span class="orb-core"></span><span class="orb-ring orb-ring-one"></span><span class="orb-ring orb-ring-two"></span><span class="orb-axis"></span></div>
+    <p class="intro-terminal" aria-hidden="true"><span>guest@bintang:~$</span> whoami</p>
+    <h1 id="intro-title">Halo, aku <span>Bintang.</span></h1>
+    <p class="intro-copy">Pelajar, web learner, dan calon game developer dari Medan. Selamat datang di ruang digitalku.</p>
+    <button class="btn intro-enter" id="intro-enter" type="button">Masuk ke halaman</button>
+    <p class="intro-hint">Suara dapat dinyalakan setelah masuk</p>
+  </div>
+</div>
+
 <!-- Stars Background -->
 <div class="stars-container">
   <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
@@ -21,7 +47,7 @@
 <div id="loading">
   <div class="loader"></div>
   <p>Loading...</p>
-  <p class="loading-sub">Memuat Musik & Konten ⚡</p>
+  <p class="loading-sub">Menyiapkan halaman personal</p>
 </div>
 
 <nav class="navbar" aria-label="Navigasi utama">
@@ -73,10 +99,10 @@
   Browser kamu tidak support audio player.
 </audio>
 
-<div class="music-control" id="musicToggle">
-  <span class="music-icon">🎵</span>
-  <span class="music-text">BG Music</span>
-</div>
+<button class="music-control" id="musicToggle" type="button" aria-label="Nyalakan musik" aria-pressed="false">
+  <span class="music-icon" aria-hidden="true">♪</span>
+  <span class="music-text">Musik mati</span>
+</button>
 
 <script src="script.js"></script>
 </body>
